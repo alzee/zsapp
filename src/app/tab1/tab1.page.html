@@ -13,6 +13,7 @@
     </ion-toolbar>
   </ion-header>
 
+  <!--
   <ion-segment scrollable (ionChange)="segmentChanged($event)">
     <ion-segment-button value="1">
       <ion-label>Friends</ion-label>
@@ -39,6 +40,19 @@
       <ion-label>Enemies</ion-label>
     </ion-segment-button>
   </ion-segment>
+  -->
+
+  <ion-item>
+    <ion-label>Popover</ion-label>
+    <ion-select [interfaceOptions]="customPopoverOptions" interface="action-sheet" placeholder="Select One">
+      <ion-select-option value="brown">Brown</ion-select-option>
+      <ion-select-option value="blonde">Blonde</ion-select-option>
+      <ion-select-option value="black">Black</ion-select-option>
+      <ion-select-option value="red">Red</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
 
   <!--
   <app-explore-container name="Tab 1 page"></app-explore-container>
