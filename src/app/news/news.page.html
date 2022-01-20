@@ -22,7 +22,7 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-item *ngFor="let i of nodes" [routerLink]="['/node']" [queryParams]="{id: i.nid}">
+    <ion-item detail="false" *ngFor="let i of nodes" [routerLink]="['/node']" [queryParams]="{id: i.nid}">
       <ion-label>
         <h2>{{ i.title }}</h2>
         <h3>{{ i.uid }}</h3>
