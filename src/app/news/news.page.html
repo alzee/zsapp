@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="segmentChanged($event)" value="1">
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="seg">
     <ion-segment-button value="1">
       <ion-label>行业资讯</ion-label>
     </ion-segment-button>
@@ -17,12 +17,16 @@
     </ion-segment-button>
   </ion-segment>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list>
     <ion-item *ngFor="let i of nodes">
       <ion-label>
         <h2>{{ i.title }}</h2>
-        <h3>{{ i.author }}</h3>
-        <p>{{ i.date }}</p>
+        <h3>{{ i.uid }}</h3>
+        <p>{{ i.created }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

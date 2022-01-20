@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-news',
@@ -10,94 +11,18 @@ export class NewsPage implements OnInit {
   nodes: any;
   nodes1: any;
   nodes2: any;
-  nodes3: any;
+  nodes7: any;
 
-  constructor() { }
+  constructor(
+    private httpService: HttpService
+  ) { }
 
   ngOnInit() {
-    this.nodes1 = [
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-    ];
-    this.nodes2 = [
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-    ];
-    this.nodes3 = [
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-      {
-        title: 'daf adsf ',
-        author: 'adsfm',
-        date: '123 123'
-      },
-    ];
-
-    this.nodes = this.nodes1;
+    this.httpService.get('nodes/1').subscribe((res) => {
+      this.nodes1 = res;
+      this.nodes = this.nodes1;
+      console.log(res);
+    });
   }
 
   segmentChanged(e){
@@ -108,14 +33,45 @@ export class NewsPage implements OnInit {
         this.nodes = this.nodes1;
         break;
       case 2:
+        if (!this.nodes2) {
+          this.httpService.get('nodes/2').subscribe((res) => {
+            this.nodes2 = res;
+            this.nodes = this.nodes2;
+            console.log(res);
+          });
+        }
         this.nodes = this.nodes2;
         break;
-      case 3:
-        this.nodes = this.nodes3;
+      case 7:
+        if (!this.nodes7) {
+          this.httpService.get('nodes/7').subscribe((res) => {
+            this.nodes7 = res;
+            this.nodes = this.nodes7;
+            console.log(res);
+          });
+        }
+        this.nodes = this.nodes7;
         break;
     }
   }
 
   loadData(e){
+    setTimeout(() => {
+      console.log('Done');
+      e.target.complete();
+
+      if (this.nodes.length === 50) {
+        e.target.disabled = true;
+      }
+    }, 500);
+  }
+
+  doRefresh(e){
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      e.target.complete();
+    }, 1000);
   }
 }
