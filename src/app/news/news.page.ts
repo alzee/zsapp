@@ -8,9 +8,9 @@ import { HttpService } from '../services/http.service';
 })
 export class NewsPage implements OnInit {
   seg = 1;
-  page = 0;
+  page: any = [0,0,0,0,0,0,0,0];
   nodes: any = [];
-  nodesArr: any = [];
+  nodesAll: any = [];
 
   constructor(
     private httpService: HttpService
@@ -23,22 +23,22 @@ export class NewsPage implements OnInit {
   segmentChanged(e){
     this.seg = +e.detail.value;
     console.log(this.seg);
-    if (!this.nodesArr[this.seg]) {
+    if (!this.nodesAll[this.seg]) {
       this.getNodes();
       console.log(this.seg);
     } else {
-      this.nodes = this.nodesArr[this.seg];
+      this.nodes = this.nodesAll[this.seg];
     }
   }
 
   getNodes(){
-    this.httpService.get(`nodes/${this.seg}?page=${this.page}`).subscribe((res) => {
-      if (this.page > 0) {
+    this.httpService.get(`nodes/${this.seg}?page=${this.page[this.seg]}`).subscribe((res) => {
+      if (this.page[this.seg] > 0) {
         this.nodes = [...this.nodes, ...res];
       } else {
         this.nodes = res;
       }
-      this.nodesArr[this.seg] = this.nodes;
+      this.nodesAll[this.seg] = this.nodes;
     });
   }
 
@@ -46,7 +46,7 @@ export class NewsPage implements OnInit {
     setTimeout(() => {
       console.log('Done');
       e.target.complete();
-      this.page += 1;
+      this.page[this.seg] += 1;
       this.getNodes();
       if (this.nodes.length === 50) {
         e.target.disabled = true;
@@ -57,7 +57,7 @@ export class NewsPage implements OnInit {
   doRefresh(e){
     console.log('Begin async operation');
     this.nodes = [];
-    this.page = 0;
+    this.page[this.seg] = 0;
     this.seg = 1;
     setTimeout(() => {
       console.log('Async operation has ended');
