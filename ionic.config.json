@@ -1,5 +1,7 @@
 {
   "name": "zsapp",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
