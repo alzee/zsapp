@@ -8,58 +8,46 @@ import { HttpService } from '../services/http.service';
 })
 export class NewsPage implements OnInit {
   seg = 1;
-  nodes: any;
-  nodes1: any;
-  nodes2: any;
-  nodes7: any;
+  page = 0;
+  nodes: any = [];
+  nodesArr: any = [];
 
   constructor(
     private httpService: HttpService
   ) { }
 
   ngOnInit() {
-    this.httpService.get('nodes/1').subscribe((res) => {
-      this.nodes1 = res;
-      this.nodes = this.nodes1;
-      console.log(res);
-    });
+    this.getNodes();
   }
 
   segmentChanged(e){
     this.seg = +e.detail.value;
     console.log(this.seg);
-    switch (this.seg) {
-      case 1:
-        this.nodes = this.nodes1;
-        break;
-      case 2:
-        if (!this.nodes2) {
-          this.httpService.get('nodes/2').subscribe((res) => {
-            this.nodes2 = res;
-            this.nodes = this.nodes2;
-            console.log(res);
-          });
-        }
-        this.nodes = this.nodes2;
-        break;
-      case 7:
-        if (!this.nodes7) {
-          this.httpService.get('nodes/7').subscribe((res) => {
-            this.nodes7 = res;
-            this.nodes = this.nodes7;
-            console.log(res);
-          });
-        }
-        this.nodes = this.nodes7;
-        break;
+    if (!this.nodesArr[this.seg]) {
+      this.getNodes();
+      console.log(this.seg);
+    } else {
+      this.nodes = this.nodesArr[this.seg];
     }
+  }
+
+  getNodes(){
+    this.httpService.get(`nodes/${this.seg}?page=${this.page}`).subscribe((res) => {
+      if (this.page > 0) {
+        this.nodes = [...this.nodes, ...res];
+      } else {
+        this.nodes = res;
+      }
+      this.nodesArr[this.seg] = this.nodes;
+    });
   }
 
   loadData(e){
     setTimeout(() => {
       console.log('Done');
       e.target.complete();
-
+      this.page += 1;
+      this.getNodes();
       if (this.nodes.length === 50) {
         e.target.disabled = true;
       }
@@ -68,9 +56,12 @@ export class NewsPage implements OnInit {
 
   doRefresh(e){
     console.log('Begin async operation');
-
+    this.nodes = [];
+    this.page = 0;
+    this.seg = 1;
     setTimeout(() => {
       console.log('Async operation has ended');
+      this.getNodes();
       e.target.complete();
     }, 1000);
   }
