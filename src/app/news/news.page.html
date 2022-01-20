@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>news</ion-title>
+    <ion-title>新闻资讯</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)" value="1">
+    <ion-segment-button value="1">
+      <ion-label>行业解读</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>政策法规</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="3">
+      <ion-label>公司动态</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
 </ion-content>

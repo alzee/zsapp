@@ -12,4 +12,7 @@ export class NewsPage implements OnInit {
   ngOnInit() {
   }
 
+  segmentChanged(){
+  }
+
 }
