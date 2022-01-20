@@ -7,13 +7,13 @@
 <ion-content>
   <ion-item>
     <ion-label>统计类型</ion-label>
-    <ion-select [interfaceOptions]="customPopoverOptions" interface="action-sheet" cancelText="取消" value="chart1" placeholder="请选择">
-      <ion-select-option value="chart1">年交易量</ion-select-option>
-      <ion-select-option value="chart2">区域订单量</ion-select-option>
-      <ion-select-option value="chart3">区域交易分析</ion-select-option>
-      <ion-select-option value="chart4">周毛利统计</ion-select-option>
-      <ion-select-option value="chart5">产品分布比例</ion-select-option>
-      <ion-select-option value="chart6">收购量分析</ion-select-option>
+    <ion-select (ionChange)="changeChart($event)" [interfaceOptions]="customPopoverOptions" interface="action-sheet" cancelText="取消" value="1" placeholder="请选择">
+      <ion-select-option value="1">年交易量</ion-select-option>
+      <ion-select-option value="2">区域订单量</ion-select-option>
+      <ion-select-option value="3">区域交易分析</ion-select-option>
+      <ion-select-option value="4">周毛利统计</ion-select-option>
+      <ion-select-option value="5">产品分布比例</ion-select-option>
+      <ion-select-option value="6">收购量分析</ion-select-option>
     </ion-select>
   </ion-item>
 

@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart.page.scss'],
 })
 export class ChartPage implements OnInit {
+  seg = 1;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  changeChart(e){
+    this.seg = +e.detail.value;
+    console.log(this.seg);
   }
 
 }

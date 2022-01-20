@@ -6,13 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news.page.scss'],
 })
 export class NewsPage implements OnInit {
+  seg = 1;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  segmentChanged(){
+  segmentChanged(e){
+    this.seg = +e.detail.value;
+    console.log(this.seg);
   }
 
 }
