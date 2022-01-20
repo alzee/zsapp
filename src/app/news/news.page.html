@@ -12,9 +12,26 @@
     <ion-segment-button value="2">
       <ion-label>政策解读</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="3">
+    <ion-segment-button value="7">
       <ion-label>公司动态</ion-label>
     </ion-segment-button>
   </ion-segment>
+
+  <ion-list>
+    <ion-item *ngFor="let i of nodes">
+      <ion-label>
+        <h2>{{ i.title }}</h2>
+        <h3>{{ i.author }}</h3>
+        <p>{{ i.date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+        loadingSpinner="dots"
+        loadingText="加载中...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
