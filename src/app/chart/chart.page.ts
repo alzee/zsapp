@@ -42,33 +42,61 @@ export class ChartPage implements AfterViewInit, OnInit {
     this.data = {
       labels: labels,
       datasets: [{
-        label: 'Open',
+        label: '废钢',
         data: opens,
-        backgroundColor: 'rgba(255, 199, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 32, 0.8)',
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 205, 86)',
+            '#36a2eb',
+            '#22cfcf'
+        ],
+        // backgroundColor: 'rgba(255, 199, 132)',
+        // backgroundColor: 'rgba(255, 199, 132, 0.2)',
+        // borderColor: 'rgba(255, 99, 32, 0.8)',
         borderWidth: 2
       },{
-        label: 'High',
+        label: '不锈钢',
         data: highs,
-        backgroundColor: 'rgba(55, 99, 132, 0.4)',
-        borderColor: 'rgba(55, 99, 132, 0.8)',
+        backgroundColor: [
+            '#36a2eb',
+            '#22cfcf',
+            'rgb(255, 99, 132)',
+            'rgb(255, 205, 86)',
+        ],
+        // backgroundColor: 'rgba(55, 99, 132)',
+        // backgroundColor: 'rgba(55, 99, 132, 0.4)',
+        // borderColor: 'rgba(55, 99, 132, 0.8)',
         borderWidth: 2
       }, {
-        label: 'Low',
+        label: '特钢',
         data: lows,
-        backgroundColor: 'rgba(155, 99, 132, 0.4)',
-        borderColor: 'rgba(155, 99, 132, 0.8)',
+        backgroundColor: [
+            '#22cfcf',
+            'rgb(255, 99, 132)',
+            '#36a2eb',
+            'rgb(255, 205, 86)',
+        ],
+        // backgroundColor: 'rgba(155, 99, 132)',
+        // backgroundColor: 'rgba(155, 99, 132, 0.4)',
+        // borderColor: 'rgba(155, 99, 132, 0.8)',
         borderWidth: 2
       }, {
-        label: 'Close',
+        label: '其它',
         data: closes,
-        backgroundColor: 'rgba(55, 99, 232, 0.4)',
-        borderColor: 'rgba(55, 99, 132, 0.8)',
+        backgroundColor: [
+            'rgb(255, 205, 86)',
+            '#36a2eb',
+            'rgb(255, 99, 132)',
+            '#22cfcf'
+        ],
+        // backgroundColor: 'rgba(55, 99, 232)',
+        // backgroundColor: 'rgba(55, 99, 232, 0.4)',
+        // borderColor: 'rgba(55, 99, 132, 0.8)',
         borderWidth: 2
       }]
     };
     this.changeChart({detail: {
-      value : 'bar'
+      value : 'doughnut'
     }});
   }
   changeChart( event: any ) {
@@ -87,10 +115,4 @@ export class ChartPage implements AfterViewInit, OnInit {
   addRandom( points: any ) : number {
     return Number(points) - Number( Math.floor((Math.random() * 100) + 1) );
   }
- /* 
-  changeChart(e){
-    this.seg = +e.detail.value;
-    console.log(this.seg);
-  }
- */
 }
