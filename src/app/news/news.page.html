@@ -22,7 +22,7 @@
   </ion-refresher>
 
   <ion-list>
-    <ng-container *ngIf="!nodes">
+    <ng-container *ngIf="nodes.length == 0">
     <ion-item detail="false" *ngFor="let i of [].constructor(10)">
       <ion-label>
         <ion-skeleton-text animated style="width: 100%; height: 20px"></ion-skeleton-text>
