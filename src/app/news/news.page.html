@@ -22,6 +22,15 @@
   </ion-refresher>
 
   <ion-list>
+    <ng-container *ngIf="!nodes">
+    <ion-item detail="false" *ngFor="let i of [].constructor(10)">
+      <ion-label>
+        <ion-skeleton-text animated style="width: 100%; height: 20px"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 15%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+    </ng-container>
     <ion-item detail="false" *ngFor="let i of nodes" [routerLink]="['/node']" [queryParams]="{id: i.nid}">
       <ion-label>
         <h2>{{ i.title }}</h2>
