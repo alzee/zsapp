@@ -2,7 +2,7 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const url = 'https://zmall.itove.com';
+const url = 'https://m.syzszz.cn';
 export const environment = {
   production: false,
   smsPass: 'test',
